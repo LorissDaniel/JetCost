@@ -42,12 +42,23 @@ class BookmarksFragment : Fragment() {
         bookmarksList.layoutManager = layoutManager
         mainViewModel.bookmarks.observe(viewLifecycleOwner) {
             adapter.updateData(it)
+            showEmptyView(it)
         }
     }
 
     private fun onDeleteBookmark(item: ItemAndImage) {
         mainViewModel.deleteBookmark(item)
         Toast.makeText(requireContext(), "Bookmark deleted successfully!", Toast.LENGTH_LONG).show()
+    }
+
+    private fun showEmptyView(data: List<ItemAndImage>) {
+        if (data.isEmpty()) {
+            binding.bookmarksList.visibility = View.GONE
+            binding.emptyView.visibility = View.VISIBLE
+        } else {
+            binding.bookmarksList.visibility = View.VISIBLE
+            binding.emptyView.visibility = View.GONE
+        }
     }
 
     override fun onDestroyView() {

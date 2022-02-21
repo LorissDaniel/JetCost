@@ -5,4 +5,5 @@
     <string name="title_notifications">Notifications</string>
     <string name="search_base_url">https://www.googleapis.com/customsearch/</string>
     <string name="search_view_hint">Search image here</string>
+    <string name="no_bookmarks_available">No bookmarks saved yet!</string>
 </resources>
