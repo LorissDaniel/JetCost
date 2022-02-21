@@ -4,4 +4,5 @@
     <string name="title_bookmarks">Bookmarks</string>
     <string name="title_notifications">Notifications</string>
     <string name="search_base_url">https://www.googleapis.com/customsearch/</string>
+    <string name="search_view_hint">Search image here</string>
 </resources>

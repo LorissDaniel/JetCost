@@ -7,25 +7,15 @@
     android:padding="8dp"
     tools:context=".ui.home.HomeFragment">
 
-    <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/searchText"
+    <SearchView
+        android:id="@+id/search"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:hint="Cerca immagini..."
+        android:iconifiedByDefault="false"
+        android:queryHint="@string/search_view_hint"
         app:layout_constraintBottom_toTopOf="@+id/searchResultListView"
-        app:layout_constraintEnd_toStartOf="@+id/search"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/search"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Cerca"
-        android:textAlignment="center"
-        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
