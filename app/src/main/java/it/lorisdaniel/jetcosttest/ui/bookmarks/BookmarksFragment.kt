@@ -4,10 +4,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import it.lorisdaniel.jetcosttest.databinding.FragmentBookmarksBinding
+import it.lorisdaniel.jetcosttest.model.ItemAndImage
 import it.lorisdaniel.jetcosttest.ui.adapter.BookmarksAdapter
 import it.lorisdaniel.jetcosttest.ui.viewmodel.MainViewModel
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
@@ -31,7 +33,7 @@ class BookmarksFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val bookmarksList = binding.bookmarksList
-        val adapter = BookmarksAdapter(requireContext(), ArrayList())
+        val adapter = BookmarksAdapter(requireContext(), ArrayList(), this::onDeleteBookmark)
         adapter.stateRestorationPolicy =
             RecyclerView.Adapter.StateRestorationPolicy.PREVENT_WHEN_EMPTY
         val layoutManager =
@@ -41,6 +43,11 @@ class BookmarksFragment : Fragment() {
         mainViewModel.bookmarks.observe(viewLifecycleOwner) {
             adapter.updateData(it)
         }
+    }
+
+    private fun onDeleteBookmark(item: ItemAndImage) {
+        mainViewModel.deleteBookmark(item)
+        Toast.makeText(requireContext(), "Bookmark deleted successfully!", Toast.LENGTH_LONG).show()
     }
 
     override fun onDestroyView() {

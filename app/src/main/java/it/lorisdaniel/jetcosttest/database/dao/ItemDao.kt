@@ -18,4 +18,7 @@ interface ItemDao {
     @Query("SELECT * FROM Item")
     suspend fun getItemsAndImages(): List<ItemAndImage>
 
+    @Delete
+    suspend fun deleteItem(item: Item)
+
 }

@@ -37,4 +37,10 @@ class MainViewModel(private val repository: Repository) : ViewModel() {
         }
     }
 
+    fun deleteBookmark(item: ItemAndImage){
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.deleteBookmark(item)
+        }
+    }
+
 }

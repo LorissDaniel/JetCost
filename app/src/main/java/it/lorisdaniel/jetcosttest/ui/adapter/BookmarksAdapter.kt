@@ -10,19 +10,23 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import it.lorisdaniel.jetcosttest.R
+import it.lorisdaniel.jetcosttest.model.Image
+import it.lorisdaniel.jetcosttest.model.Item
 import it.lorisdaniel.jetcosttest.model.ItemAndImage
 import it.lorisdaniel.jetcosttest.ui.bookmarks.BookmarksDiffUtil
 
 
 class BookmarksAdapter(
     private val context: Context,
-    private val bookmarks: ArrayList<ItemAndImage>
+    private val bookmarks: ArrayList<ItemAndImage>,
+    private val onDeleteBookmark: (item: ItemAndImage) -> Unit
 ) :
     RecyclerView.Adapter<BookmarksAdapter.ViewHolder>() {
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val image: ImageView = view.findViewById(R.id.imagePreview)
         val title: TextView = view.findViewById(R.id.imageTitle)
+        val delete: ImageView = view.findViewById(R.id.delete_bookmark)
     }
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ViewHolder {
@@ -48,6 +52,12 @@ class BookmarksAdapter(
             .fitCenter()
             .into(holder.image)
         holder.title.text = bookmark.item.title
+        holder.delete.setOnClickListener {
+            onDeleteBookmark(bookmark)
+            val index = bookmarks.indexOf(bookmark)
+            bookmarks.removeAt(index)
+            notifyItemRemoved(index)
+        }
     }
 
 }

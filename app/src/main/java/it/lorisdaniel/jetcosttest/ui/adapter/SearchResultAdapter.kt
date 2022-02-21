@@ -10,7 +10,7 @@ import it.lorisdaniel.jetcosttest.databinding.ItemSearchresultBinding
 import it.lorisdaniel.jetcosttest.model.Image
 import it.lorisdaniel.jetcosttest.model.Item
 
-class SearchResultAdapter(private val onSaveBookmarkCallback: (item: Item, image: Image?) -> Unit) :
+class SearchResultAdapter(private val onSaveBookmark: (item: Item, image: Image?) -> Unit) :
     PagingDataAdapter<Item, SearchResultAdapter.PassengersViewHolder>(PassengersComparator) {
 
     override fun onCreateViewHolder(
@@ -38,8 +38,8 @@ class SearchResultAdapter(private val onSaveBookmarkCallback: (item: Item, image
                 .fitCenter()
                 .into(imagePreview)
             imageTitle.text = item.title
-            bookmarkButton.setOnClickListener {
-                onSaveBookmarkCallback(item, item.image)
+            saveBookmark.setOnClickListener {
+                onSaveBookmark(item, item.image)
             }
         }
     }
